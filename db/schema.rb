@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_200357) do
+ActiveRecord::Schema.define(version: 2019_02_04_215838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "liquors", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "brand", null: false
+    t.integer "proof", default: 0
+    t.string "made_at"
+    t.bigint "spirit_subtype_id"
+    t.index ["spirit_subtype_id"], name: "index_liquors_on_spirit_subtype_id"
+  end
+
+  create_table "spirit_subtypes", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "spirit_id", null: false
+    t.index ["spirit_id"], name: "index_spirit_subtypes_on_spirit_id"
+  end
+
+  create_table "spirits", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
