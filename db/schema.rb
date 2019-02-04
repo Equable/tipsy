@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_215838) do
+ActiveRecord::Schema.define(version: 2019_02_04_225102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cocktails", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "image_url"
+    t.text "directions"
+  end
+
+  create_table "liquor_parts", force: :cascade do |t|
+    t.bigint "cocktail_id", null: false
+    t.bigint "liquor_id", null: false
+    t.float "amount", null: false
+    t.string "unit", default: "oz", null: false
+    t.index ["cocktail_id"], name: "index_liquor_parts_on_cocktail_id"
+    t.index ["liquor_id"], name: "index_liquor_parts_on_liquor_id"
+  end
 
   create_table "liquors", force: :cascade do |t|
     t.string "name", null: false

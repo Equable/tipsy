@@ -23,4 +23,16 @@ FactoryBot.define do
     spirit_subtype { FactoryBot.create(:spirit_subtype) }
   end
 
+  factory :cocktail do
+    name { Faker::Food.spice }
+    image_url { 'https://www.saveur.com/sites/saveur.com/files/styles/1000_1x_/public/copper-king-6_2000x1500.jpg?itok=vMhh96oB&fc=50,50' }
+    directions { Faker::Lorem.paragraphs }
+  end
+
+  factory :liquor_part do
+    cocktail { FactoryBot.create(:cocktail) }
+    liquor { FactoryBot.create(:liquor) }
+    amount { "1" }
+    unit { Faker::Food.metric_measurement }
+  end
 end
