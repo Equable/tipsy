@@ -1,2 +1,26 @@
-# tipsy
-an app designed to search liquor and bitters as well as suggest recipes etc
+# Tipsy README
+
+[![Codeship Status for Equable/tipsy](https://app.codeship.com/projects/da2542a0-0ad5-0137-2264-72acf08820cf/status?branch=master)](https://app.codeship.com/projects/326289)
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
