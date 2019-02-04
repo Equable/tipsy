@@ -288,4 +288,5 @@ Devise.setup do |config|  config.secret_key = Rails.application.secret_key_base
   # ActiveSupport.on_load(:devise_failure_app) do
   #   include Turbolinks::Controller
   # end
+  config.authentication_keys = [ :login ]
 end
