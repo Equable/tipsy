@@ -149,3 +149,18 @@ bitters=[
 bitters.each do |bitter|
   Bitter.create(bitter)
 end
+
+general_ingredients = [
+  { name: "Egg White" },
+  { name: "Egg Whole" },
+  { name: "Egg Yolk" },
+  { name: "Mint" },
+  { name: "Lime" },
+  { name: "Lemon" },
+  { name: "Orange" },
+  { name: "Simple Syrup" }
+]
+
+general_ingredients.each do |general_ingredient|
+  GeneralIngredient.create(general_ingredient)
+end
