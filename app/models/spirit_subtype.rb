@@ -1,5 +1,7 @@
 class SpiritSubtype < ApplicationRecord
   has_many :liquors
+  has_many :liquor_parts, through: :liquors
+  has_many :cocktails, through: :liquor_parts
   
   belongs_to :spirit
   
