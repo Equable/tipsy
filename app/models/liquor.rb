@@ -1,4 +1,7 @@
 class Liquor < ApplicationRecord
+  has_many :liquor_parts
+  has_many :cocktails, through: :liquor_parts
+  
   belongs_to :spirit_subtype
   
   validates :name, presence: true
