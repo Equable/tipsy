@@ -134,7 +134,7 @@ liquors = [
   { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 91 }, 
   { name: "Dry Vermouth", brand: "Martini & Rossi", proof: "88", made_at: "Italy", spirit_subtype_id: 92 }, 
   { name: "Campari", brand: "Campari", proof: "48", made_at: "Italy", spirit_subtype_id: 95 }, 
-  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "Italy", spirit_subtype_id: 99 } 
+  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "France", spirit_subtype_id: 99 } 
 ]
 
 liquors.each do |liquor|
@@ -163,4 +163,43 @@ general_ingredients = [
 
 general_ingredients.each do |general_ingredient|
   GeneralIngredient.create(general_ingredient)
+end
+
+cocktails = [
+  {name: "Verdant Lady", image_url: "https://bojongourmet.com/wp-content/uploads/2016/03/Verdant-Lady-Chartreuse-Gin-Mint-Cocktail-6.jpg", directions: "In a cocktail shaker filled halfway with ice, combine the gin, lime juice, simple syrup, chartreuse, and mint leaves. Shake vigorously for 30 seconds, then strain into a coupe. Garnish with a mint sprig if you like, and serve."},
+  {name: "Negroni", image_url:"https://www.thespruceeats.com/thmb/AHWO_swapE-OzY_e3-Ufk2YAR2s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/negroni-cocktail-recipe-759327-6-5b3f965b46e0fb00364f8d61.jpg", directions: "Stir the gin, campari and vermouth with ice. Strain into an ie-filled highball glass."}
+]
+
+cocktails.each do |cocktail|
+  Cocktail.create(cocktail)
+end
+
+general_parts=[
+  {cocktail_id: 1, general_ingredient_id: 5, amount: 1, unit: "squeezed"},
+  {cocktail_id: 1, general_ingredient_id: 4, amount: 4, unit: "leaves"},
+  {cocktail_id: 1, general_ingredient_id: 8, amount: 1, unit: "splash"}
+]
+
+general_parts.each do |general|
+  GeneralPart.create(general)
+end
+
+bitter_parts=[
+  {cocktail_id: 2, bitter_id: 1, drops: 4}
+]
+
+bitter_parts.each do |bitter_part|
+  BitterPart.create(bitter_part)
+end
+
+liquor_parts=[
+  {cocktail_id: 1, liquor_id: 1, amount: 1.5, unit: "oz"},
+  {cocktail_id: 1, liquor_id: 7, amount: 1.5, unit: "oz"},
+  {cocktail_id: 2, liquor_id: 2, amount: 1.5, unit: "oz"},
+  {cocktail_id: 2, liquor_id: 4, amount: 1.5, unit: "oz"},
+  {cocktail_id: 2, liquor_id: 6, amount: 1.5, unit: "oz"}
+]
+
+liquor_parts.each do |liquor_part|
+  LiquorPart.create(liquor_part)
 end
