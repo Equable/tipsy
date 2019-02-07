@@ -13,5 +13,13 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require _custom.scss
 
  */
+body{
+  background-image: url('http://www.thebaynet.com/media/photos/gallery/b692ede8-b1eb-4e12-acb7-80f9b32d49a9.jpg');
+  background-size:cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

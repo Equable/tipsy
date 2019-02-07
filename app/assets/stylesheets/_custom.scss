@@ -1,0 +1,41 @@
+@import 'util/mixins';
+@import 'util/util';
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+
+$top-bar-color: white;
+$top-bar-link-color:black;
+$main-font:'Rock Salt', cursive;
+
+.search-tile{
+  width: 100%;
+  height: 100%;
+  background:white;
+  padding: 5rem;
+  border-radius:50px;
+}
+
+$menu-background: #333;
+
+.title-bar {
+  background: $top-bar-color;
+  padding: 0.9rem;
+}
+
+.top-bar {
+  background: $top-bar-color !important;
+  .dropdown, .menu{
+    background: $top-bar-color;
+  }
+  ul {
+    background: $top-bar-color;
+  
+    li {
+      background: $top-bar-color;
+    
+        a {
+          color: black;
+          font-family: $main-font;
+      }
+    }
+  }
+}
