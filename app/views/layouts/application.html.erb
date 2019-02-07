@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Tipsy" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "The Tipsy Mixologist" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,22 +12,26 @@
   </head>
 
   <body>
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text"><a href="/">Tipsy</a></li>
-        </ul>
-      </div>
+    <div data-sticky-container>
+      <div class="small-12 sticky" data-sticky data-options="marginTop: 0">
+        <div class="top-bar">
+          <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+              <li class="menu-text"><a href="/">The Tipsy Mixologist</a></li>
+            </ul>
+          </div>
 
-      <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <%- if current_user -%>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <%- else -%>
-            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-            <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <%- end -%>
-        </ul>
+          <div class="top-bar-right">
+            <ul class="dropdown menu" data-dropdown-menu>
+              <%- if current_user -%>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              <%- else -%>
+                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <%- end -%>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
