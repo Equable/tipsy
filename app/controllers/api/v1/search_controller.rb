@@ -6,6 +6,9 @@ class Api::V1::SearchController < ApplicationController
     spirits = spirit_query(query)
     liquors = liquor_query(query)
     cocktails = cocktail_query(query)
+    cocktails = iterate_add_cocktails(spirits, cocktails).map do |cocktail|
+      CocktailSerializer.new(cocktail)
+    end
     render json: {spirit: spirits, liquors:liquors, cocktails:cocktails }
   end
 
@@ -25,8 +28,13 @@ class Api::V1::SearchController < ApplicationController
 
   def cocktail_query(query)
     cocktails = Cocktail.arel_table
-    cocktails = Cocktail.where(cocktails[:name].matches("%#{query}%")).map do |liquor|
-      CocktailSerializer.new(liquor)
+    cocktails = Cocktail.where(cocktails[:name].matches("%#{query}%"))
+  end
+
+  def iterate_add_cocktails(spirits, cocktails)
+    spirits.each do |spirit|
+      cocktails = (cocktails + spirit.cocktails).uniq
     end
+    return cocktails
   end
 end

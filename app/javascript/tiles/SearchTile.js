@@ -15,16 +15,14 @@ const SearchTile = props => {
     height: '100%'
   }
   return (
-    <div className="search-tile">
       <div className="grid-y align-center" style={style}>
         <form onSubmit={handleSearch}>
           <label>
             Search:
-        <input type="text" value={props.searchText} onChange={searchTextChange} />
+            <input type="text" value={props.searchText} onChange={searchTextChange} />
           </label>
         </form>
       </div>
-    </div>
   );
 };
 
