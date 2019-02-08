@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Bounce from 'react-reveal'
 
 import SearchTile from '../tiles/SearchTile'
 import CocktailsContainer from './CocktailsContainer'

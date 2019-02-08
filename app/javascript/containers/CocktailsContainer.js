@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 import CocktailTile from '../tiles/CocktailTile'
-import Bounce from 'react-reveal'
-import {TransitionGroup} from 'react-transition-group'
 
 class CocktailsContainer extends Component {
   constructor(props) {
