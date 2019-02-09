@@ -10,42 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_163416) do
+ActiveRecord::Schema.define(version: 2019_02_09_232842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bitter_parts", force: :cascade do |t|
-    t.bigint "cocktail_id", null: false
-    t.bigint "bitter_id", null: false
-    t.integer "drops", limit: 2, null: false
-    t.index ["bitter_id"], name: "index_bitter_parts_on_bitter_id"
-    t.index ["cocktail_id"], name: "index_bitter_parts_on_cocktail_id"
-  end
-
-  create_table "bitters", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "brand", null: false
-    t.string "made_at"
-  end
 
   create_table "cocktails", force: :cascade do |t|
     t.string "name", null: false
     t.text "image_url"
     t.text "directions"
-  end
-
-  create_table "general_ingredients", force: :cascade do |t|
-    t.string "name", null: false
-  end
-
-  create_table "general_parts", force: :cascade do |t|
-    t.bigint "cocktail_id"
-    t.bigint "general_ingredient_id"
-    t.float "amount", null: false
-    t.string "unit", null: false
-    t.index ["cocktail_id"], name: "index_general_parts_on_cocktail_id"
-    t.index ["general_ingredient_id"], name: "index_general_parts_on_general_ingredient_id"
   end
 
   create_table "liquor_parts", force: :cascade do |t|
@@ -60,10 +33,18 @@ ActiveRecord::Schema.define(version: 2019_02_05_163416) do
   create_table "liquors", force: :cascade do |t|
     t.string "name", null: false
     t.string "brand", null: false
-    t.integer "proof", default: 0
+    t.integer "proof", default: 40
     t.string "made_at"
     t.bigint "spirit_subtype_id"
     t.index ["spirit_subtype_id"], name: "index_liquors_on_spirit_subtype_id"
+  end
+
+  create_table "other_ingredients", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "amount", null: false
+    t.string "unit", null: false
+    t.bigint "cocktail_id"
+    t.index ["cocktail_id"], name: "index_other_ingredients_on_cocktail_id"
   end
 
   create_table "spirit_subtypes", force: :cascade do |t|
@@ -85,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_163416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
