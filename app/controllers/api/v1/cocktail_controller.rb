@@ -17,6 +17,10 @@ class Api::V1::CocktailController < ApplicationController
     end
   end
 
+  def liquor_parts
+
+  end
+
   private 
 
   def cocktail_params

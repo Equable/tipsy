@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :search, only: [:create]
-      resources :cocktail, only: [:create, :show]
+      resources :cocktail, only: [:create, :show] do
+        get :liquor_parts
+      end
       resources :liquor, only: [:new, :create] do
         get :spirit_subtypes
       end
