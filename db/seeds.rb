@@ -1,3 +1,12 @@
+users = [
+  { email: "admin@gmail.com", password: "password", admin: true, username:"admin" },
+  { email: "user@gmail.com", password: "password", admin: false, username:"user" }
+]
+
+users.each do |user|
+  User.create!(user)
+end
+
 spirits = [
   { name: "Beer" },
   { name: "Sake" },
@@ -63,7 +72,6 @@ spirit_subtypes = [
   { name: "U.S Dry", spirit_id: 4 },
   { name: "Holland", spirit_id: 4 },
   { name: "Genever", spirit_id: 4 },
-  { name: "Generic", spirit_id: 4 },
   { name: "New Western Dry", spirit_id: 4 },
   { name: "Light", spirit_id: 5 },
   { name: "Gold", spirit_id: 5 },
@@ -120,7 +128,23 @@ spirit_subtypes = [
   { name: "Blue Caracoa", spirit_id: 16 },
   { name: "Aperol", spirit_id: 16 },
   { name: "Chartreuse", spirit_id: 16 },
-  { name: "Green Chartreuse", spirit_id: 16 }
+  { name: "Green Chartreuse", spirit_id: 16 },
+  { name: "Generic", spirit_id: 1},
+  { name: "Generic", spirit_id: 2},
+  { name: "Generic", spirit_id: 3},
+  { name: "Generic", spirit_id: 4 },
+  { name: "Generic", spirit_id: 5},
+  { name: "Generic", spirit_id: 6},
+  { name: "Generic", spirit_id: 7},
+  { name: "Generic", spirit_id: 8},
+  { name: "Generic", spirit_id: 9},
+  { name: "Generic", spirit_id: 10},
+  { name: "Generic", spirit_id: 11},
+  { name: "Generic", spirit_id: 12},
+  { name: "Generic", spirit_id: 13},
+  { name: "Generic", spirit_id: 14},
+  { name: "Generic", spirit_id: 15},
+  { name: "Generic", spirit_id: 16}
 ]
 
 spirit_subtypes.each do |spirit_subtype|
@@ -129,40 +153,109 @@ end
 
 liquors = [
   { name: "Beefeater", brand: "Beefeater", proof: "94", made_at: "London, England", spirit_subtype_id: 38 }, 
-  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 43 }, 
-  { name: "Gin", brand: "Generic", proof: "88", made_at: "", spirit_subtype_id: 44 }, 
-  { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 91 }, 
-  { name: "Dry Vermouth", brand: "Martini & Rossi", proof: "88", made_at: "Italy", spirit_subtype_id: 92 }, 
-  { name: "Campari", brand: "Campari", proof: "48", made_at: "Italy", spirit_subtype_id: 95 }, 
-  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "France", spirit_subtype_id: 99 } 
+  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 42 }, 
+  { name: "Gin", brand: "Generic", proof: "88", made_at: "", spirit_subtype_id: 102 }, 
+  { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 90 }, 
+  { name: "Dry Vermouth", brand: "Martini & Rossi", proof: "88", made_at: "Italy", spirit_subtype_id: 91 }, 
+  { name: "Campari", brand: "Campari", proof: "48", made_at: "Italy", spirit_subtype_id: 94 }, 
+  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "France", spirit_subtype_id: 98 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 1 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 2 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 3 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 4 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 5 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 6 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 7 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 8 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 9 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 10 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 11 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 12 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 13 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 14 }, 
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 15 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 16 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 17 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 18 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 19 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 20 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 21 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 22 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 23 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 24 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 25 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 26 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 27 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 28 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 29 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 30 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 31 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 32 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 33 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 34 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 35 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 36 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 37 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 38 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 39 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 40 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 41 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 42 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 43 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 44 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 45 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 46 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 47 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 48 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 49 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 50 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 51 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 52 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 53 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 54 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 55 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 56 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 57 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 58 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 59 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 60 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 61 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 62 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 63 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 64 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 65 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 66 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 67 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 68 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 69 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 70 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 71 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 72 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 73 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 74 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 75 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 76 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 77 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 78 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 79 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 80 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 81 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 82 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 83 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 84 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 85 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 86 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 87 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 88 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 89 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 90 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 91 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 92 },
+  { name: "Generic", brand: "Generic", spirit_subtype_id: 93 }
 ]
 
 liquors.each do |liquor|
   Liquor.create(liquor)
-end
-
-bitters=[
-  { name: "Orange Bitters", brand: "Fee Brothers", made_at: "Rochester, NY" },
-  { name: "Orange", brand: "Angostura", made_at: "" }
-]
-
-bitters.each do |bitter|
-  Bitter.create(bitter)
-end
-
-general_ingredients = [
-  { name: "Egg White" },
-  { name: "Egg Whole" },
-  { name: "Egg Yolk" },
-  { name: "Mint" },
-  { name: "Lime" },
-  { name: "Lemon" },
-  { name: "Orange" },
-  { name: "Simple Syrup" }
-]
-
-general_ingredients.each do |general_ingredient|
-  GeneralIngredient.create(general_ingredient)
 end
 
 cocktails = [
@@ -172,24 +265,6 @@ cocktails = [
 
 cocktails.each do |cocktail|
   Cocktail.create(cocktail)
-end
-
-general_parts=[
-  {cocktail_id: 1, general_ingredient_id: 5, amount: 1, unit: "squeezed"},
-  {cocktail_id: 1, general_ingredient_id: 4, amount: 4, unit: "leaves"},
-  {cocktail_id: 1, general_ingredient_id: 8, amount: 1, unit: "splash"}
-]
-
-general_parts.each do |general|
-  GeneralPart.create(general)
-end
-
-bitter_parts=[
-  {cocktail_id: 2, bitter_id: 1, drops: 4}
-]
-
-bitter_parts.each do |bitter_part|
-  BitterPart.create(bitter_part)
 end
 
 liquor_parts=[
@@ -202,4 +277,15 @@ liquor_parts=[
 
 liquor_parts.each do |liquor_part|
   LiquorPart.create(liquor_part)
+end
+
+other_ingredients=[
+  {name: "lime", amount: 1, unit: "squeezed", cocktail_id: 1},
+  {name: "mint", amount: 4, unit: "leaves", cocktail_id: 1},
+  {name: "simple syrup", amount: 1, unit: "splash", cocktail_id: 2},
+  {name: "orange bitters", amount: 4, unit: "drops", cocktail_id: 2},
+]
+
+other_ingredients.each do |other_ingredient|
+  OtherIngredient.create(other_ingredient)
 end
