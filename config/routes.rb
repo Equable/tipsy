@@ -14,6 +14,5 @@ Rails.application.routes.draw do
       resources :spirit_subtype, only: [:new, :create]
     end
   end
-
   get '*path', to: 'homes#index'
 end

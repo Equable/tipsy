@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import SearchTile from '../tiles/SearchTile'
-import CocktailsContainer from './CocktailsContainer'
-import NewCocktailTile from '../tiles/NewCocktailTile'
+import NewLiquorPartTile from '../tiles/NewLiquorPartTile'
 
 class CocktailShowContainer extends Component {
   constructor(props) {
@@ -15,7 +13,7 @@ class CocktailShowContainer extends Component {
   }
 
   fetchCocktail(){
-    let id = this.props.params.id
+    let id = this.props.match.params.id
     fetch(`/api/v1/cocktail/${id}`)
       .then(response => {
         if (response.ok) {
@@ -38,7 +36,7 @@ class CocktailShowContainer extends Component {
   render() {
 
     return(
-      <div className="grid-x align-center">
+      <div className="grid-x align-center grid-margin-y">
         <div className="cell" style={{color: 'white'}}>
           <h1>{this.state.name}</h1>
         </div>
@@ -48,6 +46,7 @@ class CocktailShowContainer extends Component {
         <div className="cell small-8 medium-7" style={{background: 'white'}}>
           <p>{this.state.directions}</p>
         </div>
+        <NewLiquorPartTile />
       </div>
     )
   }

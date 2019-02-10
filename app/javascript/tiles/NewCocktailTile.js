@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 
 class NewCocktailTile extends Component {
   constructor(props) {
@@ -9,16 +10,50 @@ class NewCocktailTile extends Component {
       directions:""
     };
     this.handleChange = this.handleChange.bind(this)
+    this.newCocktailSubmit = this.newCocktailSubmit.bind(this)
+    this.postNewCocktail = this.postNewCocktail.bind(this)
   }
 
   handleChange(event){
     this.setState({[event.target.name]:event.target.value})
   }
+  newCocktailSubmit(newCocktail) {
+    this.postNewCocktail(newCocktail)
+  }
+
+  postNewCocktail(cocktail) {
+    fetch(`/api/v1/cocktail`, {
+      method: 'POST',
+      body: JSON.stringify({ cocktail: cocktail }),
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage)
+          throw (error)
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({redirect: true, cocktail_id: body.cocktail.id})
+      })
+
+  }
   render(){
     let handleNewCocktail =(event)=>{
       event.preventDefault()
       let newCocktail = this.state
-      this.props.handleSubmit(newCocktail)
+      this.newCocktailSubmit(newCocktail)
+    }
+    let redirect
+    if(this.state.redirect){
+      return <Redirect to={`/cocktail/${this.state.cocktail_id}`} />;
     }
     return (
       <div className="cell" style={{ background: 'white' }}>

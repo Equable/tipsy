@@ -75,6 +75,21 @@ class NewLiquorTile extends Component {
       })
 
   }
+  fetchSpirits() {
+    fetch("/api/v1/spirit_subtype/new")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ spirits: body })
+      })
+  }
 
   componentDidMount(){
     this.fetchSpirits()

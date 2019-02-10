@@ -1,21 +1,29 @@
 import React from "react";
-import { Route, IndexRoute, Router, browserHistory, Link } from "react-router";
+import { Route, Router, Link, Switch } from "react-router";
+import createBrowserHistory from 'history/createBrowserHistory'
+
+
 import HomePageContainer from "../../containers/HomePageContainer"
 import CocktailShowContainer from "../../containers/CocktailShowContainer";
 import NewSpiritSubtypeTile from "../../tiles/NewSpiritSubtypeTile";
 import NewLiquorTile from "../../tiles/NewLiquorTile";
 import NewLiquorPartTile from "../../tiles/NewLiquorPartTile";
 
+const history = createBrowserHistory()
+
 const App = props => {
   return (
-    <Router history={browserHistory}>
-      <Route path="/" component={HomePageContainer} />
-      <Route path='/cocktail/:id' component={CocktailShowContainer}/>
-      <Route path='/subtype/new' component={NewSpiritSubtypeTile} />
-      <Route path='/liquor/new' component={NewLiquorTile} />
-      <Route path='/api/v1/cocktail/:cocktail_id/liquor_parts' component={NewLiquorPartTile} />
+    <Router history={history}>
+      <Switch>
+        <Route path='/cocktail/:id' component={CocktailShowContainer} />
+        <Route path='/subtype/new' component={NewSpiritSubtypeTile} />
+        <Route path='/liquor/new' component={NewLiquorTile} />
+        <Route path='/cocktail/:cocktail_id/liquor_parts' component={NewLiquorPartTile} />
+        <Route exact path="/" component={HomePageContainer} />
+      </Switch>
     </Router>
   );
 };
 
 export default App;
+
