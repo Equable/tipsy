@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-
+import NewLiquorPartDatalistInputTile from './NewLiquorPartDatalistInputTile'
 class NewLiquorPartTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
+      amount:1,
       spirit_id: "",
+      spirit_subtype_id:"",
+      brand: "",
       spirits: [],
       subtypes:[],
     };
@@ -57,38 +60,23 @@ class NewLiquorPartTile extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    let liquor = {name: this.state.name, brand: this.state.brand, subtype: this.state.spirit_subtype_id, amount: this.state.amount}
+    this.props.addLiquorPart(liquor)
   }
 
-  addLiquorPart(){
-    let id= this.props.match.params.id
-    fetch(`/api/v1/liquor/${id}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ subtypes: body, spirit_id: id })
-      })
-
-  }
   componentDidMount() {
     this.fetchSpirits()
   }
   render() {
     let options = this.state.spirits.map((spirit) => {
-      return <option value={`${spirit.id}`}>{spirit.name}</option>
+      return <option key={`SO_${spirit.id}`}value={`${spirit.id}`}>{spirit.name}</option>
     })
     let subtypeOptions = this.state.subtypes.map((subtype) => {
-      return <option value={`${subtype.id}`}>{subtype.name}</option>
+      return <option key={`SSTO_${subtype.id}`}value={`${subtype.id}`}>{subtype.name}</option>
     })
     return (
-      <div className="cell small-12 medium-8" style={{ background: 'white', padding: '10px' }}>
-        <form autoComplete="new-password" onSubmit={this.handleSubmit}>
+      <div className="cell small-12 medium-8" style={{ background: 'white', padding: '10px', textAlign: 'center' }}>
+        <form onSubmit={this.handleSubmit}>
           <div className="grid-container">
             <div className="grid-x grid-margin-x align-center">
               <div className="cell medium-2">
@@ -103,15 +91,27 @@ class NewLiquorPartTile extends Component {
                 <label>
                   Subtype:
                   <select name="spirit_subtype_id" value={this.state.subtype} onChange={this.handleChange}>
+                    <option value="">Any</option>
                     {subtypeOptions}
                   </select>
                 </label>
               </div>
-              <div className="cell medium-5">
-                <label>
-                  Name:
-                  <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-                </label>
+              <div className="cell grid-x grid-margin-x align-center">
+                <NewLiquorPartDatalistInputTile subtype={this.state.spirit_subtype_id} onChange={this.handleChange} name={this.state.name} />
+                <div className="cell medium-5">
+                  <label>
+                    Brand:
+                    <input name="brand" type="text" placeholder="Any (optional)" value={this.state.brand} onChange={this.handleChange} />
+                  </label>
+                </div>
+              </div>
+              <div className="cell grid-x grid-margin-x align-center">
+                <div className="cell medium-2">
+                  <label>
+                    Oz:
+                    <input name="amount" type="number" placeholder="2" value={this.state.amount} onChange={this.handleChange} />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
