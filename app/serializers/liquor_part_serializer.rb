@@ -1,7 +1,7 @@
 class LiquorPartSerializer < ActiveModel::Serializer
-  attributes :id, :cocktail_id, :liquor, :amount, :unit
+  attributes :id, :cocktail_id, :name, :amount, :unit
 
-  def :liquor
-    object.liquor
+  def name
+    object.liquor.name
   end
 end

@@ -1,15 +1,14 @@
 class Api::V1::LiquorPartController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
-
+  
   def create
     liquor = liquor_part_params
-    liquor_found = search_liquors(liquor).first
+    liquor_found = find_liquor_or_create(liquor)
     liquor_part = LiquorPart.new({liquor:liquor_found, amount: liquor["amount"], cocktail_id: liquor["cocktail_id"]})
-    binding.pry
-    if liquor.save
-      render json: liquor
+    if liquor_part.save
+      render json: liquor_part
     else
-      render json: {error: liquor.errors.full_messages}, status: :unprocessable_entity
+      render json: {error: liquor_part.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -21,19 +20,52 @@ class Api::V1::LiquorPartController < ApplicationController
 
   private
 
-  def search_liquors(liquor)
-    liquor_name =liquor["name"]
+  def find_liquor_or_create(liquor)
+    liquor_name = liquor["name"].gsub("'"){"\'"}
     liquor_subtype= liquor["subtype"]
+    liquor_brand = liquor["brand"].gsub("'"){"\'"}
+    liquor_spirit = liquor["spirit_id"]
     liquors = Liquor.arel_table
     if liquor_subtype==""
-      liquors = Liquor.where(liquors[:name].matches("%#{liquor_name}%") ).limit(5)
+      liquor_subtype = generic_spirit_subtype(liquor)
+      liquors = Liquor.where(liquors[:name].eq("#{liquor_name}").and(liquors[:spirit_id].eq(liquor_spirit.to_i)))
+    else
+      liquors = Liquor.where(liquors[:name].eq("#{liquor_name}").and(liquors[:spirit_subtype_id].eq(liquor_subtype.to_i)) ).limit(5)
+    end
+    if liquors.any?
+      return liquors.first
+    else
+      liquor_brand = "Any" if liquor_brand == ""
+      new_liquor= Liquor.new({name: liquor_name, brand: liquor_brand, spirit_subtype_id: liquor_subtype, spirit_id:liquor_spirit})
+      if new_liquor.save
+        return new_liquor
+      else
+        render json: {error: liquor.errors.full_messages}, status: :unprocessable_entity
+      end
+    end
+  end
+
+  def search_liquors(liquor)
+    liquor_name = liquor["name"].gsub("'"){"\'"}
+    liquor_subtype= liquor["subtype"]
+    liquor_spirit = liquor["spirit_id"]
+    liquors = Liquor.arel_table
+    if liquor_subtype==""
+      liquors = Liquor.where(liquors[:name].matches("%#{liquor_name}%").and(liquors[:spirit_id].eq(liquor_spirit.to_i)) ).limit(5)
     else
       liquors = Liquor.where(liquors[:name].matches("%#{liquor_name}%").and(liquors[:spirit_subtype_id].eq(liquor_subtype.to_i)) ).limit(5)
     end
   end
 
+  def generic_spirit_subtype(liquor)
+    spirit_subtypes = SpiritSubtype.arel_table
+    liquor_spirit = liquor["spirit_id"]
+    spirit_subtype = SpiritSubtype.where(spirit_subtypes[:name].matches("Generic").and(spirit_subtypes[:spirit_id].eq(liquor_spirit.to_i)) ).first
+    id = spirit_subtype.id
+  end
+
   def liquor_list_params
-    params.require(:liquor).permit(:name, :subtype)
+    params.require(:liquor).permit(:name, :subtype, :spirit_id)
   end
 
   def liquor_params
@@ -41,6 +73,6 @@ class Api::V1::LiquorPartController < ApplicationController
   end
 
   def liquor_part_params
-    params.require(:liquor_part).permit(:name, :subtype, :brand, :amount, :cocktail_id)
+    params.require(:liquor_part).permit(:name, :subtype, :brand, :amount, :cocktail_id, :spirit_id)
   end
 end

@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2019_02_09_232842) do
     t.string "made_at"
     t.bigint "spirit_subtype_id"
     t.bigint "user_id"
+    t.bigint "spirit_id"
+    t.index ["spirit_id"], name: "index_liquors_on_spirit_id"
     t.index ["spirit_subtype_id"], name: "index_liquors_on_spirit_subtype_id"
     t.index ["user_id"], name: "index_liquors_on_user_id"
   end

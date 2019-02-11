@@ -6,7 +6,7 @@ class NewLiquorPartTile extends Component {
     this.state = {
       name: "",
       amount:1,
-      spirit_id: "",
+      spirit_id: "1",
       spirit_subtype_id:"",
       brand: "",
       spirits: [],
@@ -60,7 +60,7 @@ class NewLiquorPartTile extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    let liquor = {name: this.state.name, brand: this.state.brand, subtype: this.state.spirit_subtype_id, amount: this.state.amount}
+    let liquor = {name: this.state.name, brand: this.state.brand, subtype: this.state.spirit_subtype_id, amount: this.state.amount, spirit_id: this.state.spirit_id}
     this.props.addLiquorPart(liquor)
   }
 
@@ -97,7 +97,7 @@ class NewLiquorPartTile extends Component {
                 </label>
               </div>
               <div className="cell grid-x grid-margin-x align-center">
-                <NewLiquorPartDatalistInputTile subtype={this.state.spirit_subtype_id} onChange={this.handleChange} name={this.state.name} />
+                <NewLiquorPartDatalistInputTile subtype={this.state.spirit_subtype_id} onChange={this.handleChange} name={this.state.name} spirit={this.state.spirit_id}/>
                 <div className="cell medium-5">
                   <label>
                     Brand:

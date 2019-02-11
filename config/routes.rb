@@ -13,7 +13,7 @@ Rails.application.routes.draw do
         get :spirit_subtypes
       end
       resources :spirit_subtype, only: [:new, :create]
-
+      resources :other_ingredient, only: [:create]
       post 'datalist/liquors', :to => 'liquor_part#liquor_datalist'
     end
   end

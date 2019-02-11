@@ -21,6 +21,7 @@ FactoryBot.define do
     name { Faker::Beer.name }
     brand { Faker::Company.name }
     spirit_subtype { FactoryBot.create(:spirit_subtype) }
+    spirit {Spirit.first}
   end
 
   factory :cocktail do

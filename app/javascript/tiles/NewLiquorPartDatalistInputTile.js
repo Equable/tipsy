@@ -13,7 +13,7 @@ class NewLiquorPartDatalistInputTile extends Component {
   fetchLiquors(name){
     fetch('/api/v1/datalist/liquors', {
       method: 'POST',
-      body: JSON.stringify({ liquor: {name: name, subtype: this.props.subtype} }),
+      body: JSON.stringify({ liquor: {name: name, subtype: this.props.subtype, spirit_id: this.props.spirit} }),
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
