@@ -1,20 +1,19 @@
 import { shallow, mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
+import fetchPonyfill from 'fetch-ponyfill';
+const { fetch, Request, Response, Headers } = fetchPonyfill({});
 import React from 'react';
 import 'jasmine-ajax';
-import fetchPonyfill from "fetch-ponyfill"
-
-const { fetch, Request, Response, Headers } = fetchPonyfill({});
 
 Object.assign(global, {
   jasmineEnzyme,
   mount,
-  React,
-  shallow,
   fetch,
   Request,
   Response,
-  Headers
+  Headers,
+  React,
+  shallow,
 });
 
 beforeEach(() => {
@@ -32,5 +31,5 @@ requireAll(require.context('./', true, /^((?!testHelper).)*\.jsx?$/));
 // require all js files except main.js in the src folder
 requireAll(require.context('../../app/javascript', true, /^((?!application).)*\.jsx?$/));
 
-// output to the browser's console when the tests run
+//output to the browser's console when the tests run
 console.info(`TESTS RAN AT ${new Date().toLocaleTimeString()}`);

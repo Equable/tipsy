@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_02_09_232842) do
     t.string "name", null: false
     t.text "image_url"
     t.text "directions"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_cocktails_on_user_id"
   end
 
   create_table "liquor_parts", force: :cascade do |t|
@@ -36,7 +38,11 @@ ActiveRecord::Schema.define(version: 2019_02_09_232842) do
     t.integer "proof", default: 40
     t.string "made_at"
     t.bigint "spirit_subtype_id"
+    t.bigint "user_id"
+    t.bigint "spirit_id"
+    t.index ["spirit_id"], name: "index_liquors_on_spirit_id"
     t.index ["spirit_subtype_id"], name: "index_liquors_on_spirit_subtype_id"
+    t.index ["user_id"], name: "index_liquors_on_user_id"
   end
 
   create_table "other_ingredients", force: :cascade do |t|

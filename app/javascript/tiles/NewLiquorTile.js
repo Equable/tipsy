@@ -45,23 +45,6 @@ class NewLiquorTile extends Component {
       })
   }
 
-  fetchSpirits() {
-    fetch(`/api/v1/liquor/new`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({spirits: body})
-      })
-  }
-
-
   handleSubmit(event){
     event.preventDefault()
     let liquor = {name: this.state.name, brand: this.state.brand, proof: this.state.proof, made_at: this.state.made_at, spirit_subtype_id: this.state.spirit_subtype_id}
@@ -91,6 +74,21 @@ class NewLiquorTile extends Component {
         
       })
 
+  }
+  fetchSpirits() {
+    fetch("/api/v1/spirit_subtype/new")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ spirits: body })
+      })
   }
 
   componentDidMount(){

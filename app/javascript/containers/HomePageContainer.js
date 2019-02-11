@@ -13,8 +13,6 @@ class HomePageContainer extends Component {
     this.searchTextChange=this.searchTextChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.fetchQueriedData = this.fetchQueriedData.bind(this)
-    this.newCocktailSubmit = this.newCocktailSubmit.bind(this)
-    this.postNewCocktail = this.postNewCocktail.bind(this)
   }
 
 
@@ -26,35 +24,6 @@ class HomePageContainer extends Component {
     if (this.state.searchText.replace(/\s/g, '') != ""){
       this.fetchQueriedData()
     }
-  }
-
-  newCocktailSubmit(newCocktail){
-    this.postNewCocktail(newCocktail)
-  }
-
-  postNewCocktail(cocktail){
-    fetch(`/api/v1/cocktail`, {
-      method: 'POST',
-      body: JSON.stringify({ cocktail: cocktail }),
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage)
-          throw (error)
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        debugger
-      })
-
   }
 
   fetchQueriedData(query){
