@@ -6,10 +6,20 @@ class Api::V1::OtherIngredientController < ApplicationController
     if ingredient.save
       render json: ingredient
     else
-      render json: {error: liquor.errors.full_messages}, status: :unprocessable_entity
+      render json: {error: ingredient.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    ingredient= OtherIngredient.find(params["id"].to_i)
+    if ingredient.cocktail.user_id === current_user.id
+      if ingredient.delete
+        render status: 202, json: {junk: "dont look im naked!"}
+      end
+    else
+      render status: 404, json: {junk: "woopsie poopsy"}
+    end
+  end
   private 
 
   def ingredient_params

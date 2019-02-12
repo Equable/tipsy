@@ -26,6 +26,9 @@ class NewOtherIngredientsTile extends Component {
             <form onSubmit={addIngredient}>
               <div className="grid-container">
                 <div className="grid-x grid-margin-x align-center">
+                  <div className="cell text-center">
+                    <h4>Add Other</h4>
+                  </div>
                   <div className="cell medium-3">
                     <label>
                       Amount:

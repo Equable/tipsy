@@ -1,5 +1,5 @@
 class ShowCocktailSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image_url, :directions, :liquor_parts, :other_ingredients, :logged_in, :signed_in
+  attributes :id, :name, :image_url, :directions, :liquor_parts, :other_ingredients, :logged_in, :signed_in, :locations
 
 
   def liquor_parts
@@ -20,6 +20,10 @@ class ShowCocktailSerializer < ActiveModel::Serializer
     else
       false
     end
+  end
+
+  def locations
+    object.locations
   end
 
   def signed_in

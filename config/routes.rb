@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :auth, only: [:index]
-      resources :liquor_part, only: [:create]
+      resources :liquor_part, only: [:create, :destroy]
       resources :search, only: [:create]
       resources :cocktail, only: [:create, :show] do
         get :liquor_parts
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
         get :spirit_subtypes
       end
       resources :spirit_subtype, only: [:new, :create]
-      resources :other_ingredient, only: [:create]
-      resources :cocktail_review, only: [:show, :create, :destroy]
+      resources :other_ingredient, only: [:create, :destroy]
+      resources :cocktail_review, only: [:show, :create, :destroy, :update]
       post 'datalist/liquors', :to => 'liquor_part#liquor_datalist'
     end
   end

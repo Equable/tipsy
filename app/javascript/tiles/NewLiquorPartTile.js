@@ -80,6 +80,9 @@ class NewLiquorPartTile extends Component {
           <div className="cell medium-4 cocktail-show-tile">
             <form onSubmit={this.handleSubmit}>
               <div className="grid-x grid-margin-x">
+                <div className="cell text-center">
+                  <h4>Add Liquor</h4>
+                </div>
                 <div className="cell medium-6">
                   <label>
                     Spirit:

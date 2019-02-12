@@ -21,8 +21,48 @@ class CocktailShowContainer extends Component {
     this.fetchCocktail = this.fetchCocktail.bind(this)
     this.addLiquorPart = this.addLiquorPart.bind(this)
     this.addIngredient = this.addIngredient.bind(this)
+    this.deleteLiquor = this.deleteLiquor.bind(this)
   }
 
+  deleteLiquor(id){
+    fetch(`/api/v1/liquor_part/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({id: id}),
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          this.fetchCocktail()
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage)
+          throw (error)
+        }
+      })
+  }
+
+  deleteIngredient(id){
+    fetch(`/api/v1/other_ingredient/${id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ id: id }),
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          this.fetchCocktail()
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage)
+          throw (error)
+        }
+      })
+  }
   fetchCocktail(){
     let id = this.props.match.params.id
     fetch(`/api/v1/cocktail/${id}`)
@@ -36,7 +76,7 @@ class CocktailShowContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({signedIn: body.signed_in, loggedIn: body.logged_in, name: body.name, image: body.image_url, directions: body.directions || "", liquorParts: body.liquor_parts, otherIngredients: body.other_ingredients})
+        this.setState({signedIn: body.signed_in, loggedIn: body.logged_in, name: body.name, image: body.image_url, directions: body.directions || "", liquorParts: body.liquor_parts, otherIngredients: body.other_ingredients, locations: body.locations})
       })
   }
 
@@ -102,20 +142,36 @@ class CocktailShowContainer extends Component {
   }
   render() {
     let liquorParts = this.state.liquorParts.map((liquorPart)=>{
+      let deleteLiquor=()=>{
+        this.deleteLiquor(liquorPart.id)
+      }
       if(this.state.loggedIn){
-        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`LiqE_${liquorPart.id}`} icon={faEdit} />&nbsp;&nbsp;<FontAwesomeIcon key={`LiqD_${liquorPart.id}`} icon={faEraser}/></span></li>
+        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`LiqD_${liquorPart.id}`} className="delete-icon" onClick={deleteLiquor} icon={faEraser}/></span></li>
       }else{
         return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name}</li>
       }
     })
 
     let otherIngredients = this.state.otherIngredients.map((ingredient) => {
+      let deleteIngredient = () => {
+        this.deleteIngredient(ingredient.id)
+      }
       if (this.state.loggedIn) {
-        return <li key={`Ing_${ingredient.id}`}>{ingredient.amount} {ingredient.unit} {ingredient.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`IngE_${ingredient.id}`} icon={faEdit} />&nbsp;&nbsp;<FontAwesomeIcon key={`IngD_${ingredient.id}`} icon={faEraser} /></span></li>
+        return <li key={`Ing_${ingredient.id}`}>{ingredient.amount} {ingredient.unit} {ingredient.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`IngD_${ingredient.id}`} className="delete-icon" icon={faEraser} onClick={deleteIngredient} /></span></li>
       } else {
         return <li key={`Ing_${ingredient.id}`}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
       }
     })
+    let addParts = () =>{
+      if (this.state.loggedIn) {
+        return(
+          <div>
+            <NewLiquorPartTile addLiquorPart={this.addLiquorPart} />
+            <NewOtherIngredientsTile addIngredient={this.addIngredient} />
+          </div>
+        )
+      }
+    }
     return(
       <div key="show_container">
         <div className="grid-x align-center grid-margin-y" style={{margin:'2rem'}}>
@@ -137,8 +193,7 @@ class CocktailShowContainer extends Component {
             </div>
           </div>
         </div>
-        <NewLiquorPartTile addLiquorPart={this.addLiquorPart} />
-        <NewOtherIngredientsTile addIngredient={this.addIngredient} />
+        {addParts()}
         <ReviewsContainer cocktailId={this.props.match.params.id} signedIn={this.state.signedIn}/>
       </div>
       

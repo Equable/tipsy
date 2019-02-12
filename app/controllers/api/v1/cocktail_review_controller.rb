@@ -11,15 +11,40 @@ class Api::V1::CocktailReviewController < ApplicationController
     if current_user
       review = permit_review
       review["user_id"] = current_user.id
+      location = Location.find_by location: review["location"]
+      if !location
+        review["location"] = Location.create({location: review["location"]})
+      else
+        location["review"] =location
+      end
+      
       newReview = CocktailReview.new(review)
       if newReview.save
         render json: newReview, serializer: CocktailReviewSerializer
       else
-        render json: {error: liquor_part.errors.full_messages}, status: :unprocessable_entity
+        render json: {error: newReview.errors.full_messages}, status: :unprocessable_entity
       end
     else
       render json: {error: "Please Sign In"}
     end
+  end
+
+  def update
+    review = permit_review
+    location = Location.find_by location: review["location"] unless review["location"] === "" 
+    if !location
+      review["location"] = Location.create({location: review["location"]})
+    else
+      review["location"] = location
+    end
+    if current_user.id === params["user_id"]
+      if CocktailReview.update(params[:id], review)
+        render status: 200, json: review
+      end
+    else
+      render status: 406, json: review
+    end
+
   end
 
   def destroy
