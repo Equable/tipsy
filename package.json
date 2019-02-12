@@ -1,11 +1,14 @@
 {
-  "name": "alpha_reviews",
+  "name": "tipsy",
   "private": true,
   "engines": {
     "node": ">=6.0.0",
     "yarn": ">=0.25.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-solid-svg-icons": "^5.7.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
     "fetch-mock": "5",
@@ -14,12 +17,13 @@
     "react-dom": "15.4.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-stars": "^2.2.5",
     "redbox-react": "1.6.0"
   },
   "devDependencies": {
     "enzyme": "~2.9.1",
-    "jasmine-ajax": "3.2.0",
     "fetch-ponyfill": "^6.0.2",
+    "jasmine-ajax": "3.2.0",
     "jasmine-core": "~2.4.1",
     "jasmine-enzyme": "~3.4.0",
     "karma": "~0.13.22",

@@ -44,7 +44,7 @@ class NewLiquorPartDatalistInputTile extends Component {
       this.props.onChange(event)
     }
     return (
-      <div className="cell medium-5">
+      <div className="cell medium-6">
         <label>
           Name:
         <input name="name" list="data" placeholder="Old No. 7" type="text" value={this.props.name} onChange={handleChange} />

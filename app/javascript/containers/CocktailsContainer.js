@@ -19,7 +19,7 @@ class CocktailsContainer extends Component {
     })
 
     return (
-      <div className="grid-x align-center white-background">
+      <div className="grid-x align-center grid-margin-x grid-margin-y cocktails">
         {cocktails}
       </div>
     )
