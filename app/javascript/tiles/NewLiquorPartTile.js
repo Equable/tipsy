@@ -6,7 +6,7 @@ class NewLiquorPartTile extends Component {
     this.state = {
       name: "",
       amount:1,
-      spirit_id: "1",
+      spirit_id: "4",
       spirit_subtype_id:"",
       brand: "",
       spirits: [],
@@ -75,48 +75,48 @@ class NewLiquorPartTile extends Component {
       return <option key={`SSTO_${subtype.id}`}value={`${subtype.id}`}>{subtype.name}</option>
     })
     return (
-      <div className="cell small-12 medium-8" style={{ background: 'white', padding: '10px', textAlign: 'center' }}>
-        <form onSubmit={this.handleSubmit}>
-          <div className="grid-container">
-            <div className="grid-x grid-margin-x align-center">
-              <div className="cell medium-2">
-                <label>
-                  Spirit:
-                    <select name="spirit_id" value={this.state.spirit_id} onChange={this.handleSpiritChange}>
-                    {options}
-                  </select>
-                </label>
-              </div>
-              <div className="cell medium-3">
-                <label>
-                  Subtype:
-                  <select name="spirit_subtype_id" value={this.state.subtype} onChange={this.handleChange}>
-                    <option value="">Any</option>
-                    {subtypeOptions}
-                  </select>
-                </label>
-              </div>
-              <div className="cell grid-x grid-margin-x align-center">
+      <div className="liquorPartTile">
+        <div className="grid-x align-center grid-margin-y">
+          <div className="cell medium-4 cocktail-show-tile">
+            <form onSubmit={this.handleSubmit}>
+              <div className="grid-x grid-margin-x">
+                <div className="cell medium-6">
+                  <label>
+                    Spirit:
+                      <select name="spirit_id" value={this.state.spirit_id} onChange={this.handleSpiritChange}>
+                      {options}
+                    </select>
+                  </label>
+                </div>
+                <div className="cell medium-6">
+                  <label>
+                    Subtype:
+                    <select name="spirit_subtype_id" value={this.state.subtype} onChange={this.handleChange}>
+                      <option value="">Any</option>
+                      {subtypeOptions}
+                    </select>
+                  </label>
+                </div>
                 <NewLiquorPartDatalistInputTile subtype={this.state.spirit_subtype_id} onChange={this.handleChange} name={this.state.name} spirit={this.state.spirit_id}/>
-                <div className="cell medium-5">
+                <div className="cell medium-4">
                   <label>
                     Brand:
                     <input name="brand" type="text" placeholder="Any (optional)" value={this.state.brand} onChange={this.handleChange} />
                   </label>
                 </div>
-              </div>
-              <div className="cell grid-x grid-margin-x align-center">
                 <div className="cell medium-2">
                   <label>
                     Oz:
-                    <input name="amount" type="number" placeholder="2" value={this.state.amount} onChange={this.handleChange} />
+                  <input name="amount" type="number" placeholder="2" value={this.state.amount} onChange={this.handleChange} />
                   </label>
                 </div>
+                <div className="cell text-center">
+                  <input className="button" type="submit" value="Submit" />
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-          <input type="submit" value="Submit" />
-        </form>
+        </div>
       </div>
     );
   }

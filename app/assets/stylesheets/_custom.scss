@@ -1,10 +1,12 @@
 @import 'util/mixins';
 @import 'util/util';
 @import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 
 $top-bar-color: white;
 $top-bar-link-color:black;
 $main-font:'Rock Salt', cursive;
+$body-font: 'Oswald', sans-serif;
 
 .search-tile{
   width: 100%;
@@ -49,10 +51,149 @@ $menu-background: #333;
 }
 
 .image{
-  max-height: 500px;
   overflow:hidden;
+  height:300px;
+  border: solid 1px white;
+  border-radius: 1px;
+  img{
+    object-position: center;
+    object-fit:cover;
+    min-height: 100%;
+    min-width: 100%;
+  }
+  
 }
-.white-background{
-  background: white;
-  padding: 5rem;
+.cocktails{
+  background: rgba(0,0,0,0.7);
+  padding: 2rem;
+  h4{
+    font-family: $main-font;
+    color: white;
+  }
+  .cocktail{
+    background: rgba(0,0,0,0.7);
+    padding: 2rem;
+  }
+}
+
+.text-center{
+  text-align: center;
+}
+
+.cocktail-show-tile{
+  background: rgba(0,0,0,0.7);
+  padding: 2rem;
+  color: white;
+  font-family: $body-font;
+  p{
+    padding: 1rem;
+    margin:0;
+  }
+  label{
+    color:white;
+    font-size: 18px;
+  }
+  h1{
+    font-family: $main-font;
+  }
+  input, select{
+    background: rgba(255,255,255,0.5);
+    color: black;
+    border-radius: 20px;
+  }
+}
+.liquorPartTile, .otherIngredientTile{
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
+  }
+}
+
+.review-tile{
+  background: rgba(0,0,0,0.7);
+  padding: 1rem;
+  h6{
+    margin: 0;
+  }
+  .stars{
+    color:#00fc7e;
+  }
+  .edit, .button{
+    margin-bottom: 0;
+    margin-right: 1rem;
+    background: rgb(252, 214, 0);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(255, 255, 255);
+      color:black;
+    }
+  }
+  .delete{
+    margin:0;
+    background: rgb(168, 23, 23);
+    font-family: $main-font;
+    color: white;
+    font-weight: 700;
+    &:hover{
+      background: rgb(255, 255, 255);
+      color:black;
+    }
+  }
+}
+
+.new-review-tile{
+  label{
+    font-size: 24px;
+  }
+  textarea{
+    min-height: 400px;
+    background: rgba(255,255,255,0.5);
+    color: black;
+    &:focus{
+          background: rgba(255,255,255,0.7);
+    }
+  }
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
+  }
+}
+.search-bar{
+  padding:3rem;
+  background: rgba(0,0,0,0.7);
+  font-family: $body-font;
+  border-radius: 30px;
+  input{
+    background: rgba(255,255,255,0.5);
+    color: black;
+    border-radius: 20px;
+  }
+  label{
+    font-size: 18px;
+    color:white;
+  }
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
+  }
 }

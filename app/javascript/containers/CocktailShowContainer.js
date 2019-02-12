@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { faEdit, faEraser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import NewLiquorPartTile from '../tiles/NewLiquorPartTile'
 import NewOtherIngredientsTile from '../tiles/NewOtherIngredientsTile'
+import ReviewsContainer from './ReviewsContainer' 
 
 class CocktailShowContainer extends Component {
   constructor(props) {
@@ -10,6 +13,8 @@ class CocktailShowContainer extends Component {
       name:"",
       image:"",
       directions:"",
+      loggedIn:false,
+      signedIn:{},
       liquorParts:[],
       otherIngredients: []
     };
@@ -31,7 +36,7 @@ class CocktailShowContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({name: body.name, image: body.image_url, directions: body.directions || "", liquorParts: body.liquor_parts, otherIngredients: body.other_ingredients})
+        this.setState({signedIn: body.signed_in, loggedIn: body.logged_in, name: body.name, image: body.image_url, directions: body.directions || "", liquorParts: body.liquor_parts, otherIngredients: body.other_ingredients})
       })
   }
 
@@ -97,30 +102,46 @@ class CocktailShowContainer extends Component {
   }
   render() {
     let liquorParts = this.state.liquorParts.map((liquorPart)=>{
-      return <li>{liquorPart.amount} {liquorPart.unit} {liquorPart.name} <span></span></li>
+      if(this.state.loggedIn){
+        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`LiqE_${liquorPart.id}`} icon={faEdit} />&nbsp;&nbsp;<FontAwesomeIcon key={`LiqD_${liquorPart.id}`} icon={faEraser}/></span></li>
+      }else{
+        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name}</li>
+      }
     })
 
     let otherIngredients = this.state.otherIngredients.map((ingredient) => {
-      return <li>{ingredient.amount} {ingredient.unit} {ingredient.name} </li>
+      if (this.state.loggedIn) {
+        return <li key={`Ing_${ingredient.id}`}>{ingredient.amount} {ingredient.unit} {ingredient.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`IngE_${ingredient.id}`} icon={faEdit} />&nbsp;&nbsp;<FontAwesomeIcon key={`IngD_${ingredient.id}`} icon={faEraser} /></span></li>
+      } else {
+        return <li key={`Ing_${ingredient.id}`}>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+      }
     })
     return(
-      <div className="grid-x align-center grid-margin-y">
-        <div className="cell" style={{color: 'white', textAlign: 'center'}}>
-          <h1>{this.state.name}</h1>
+      <div key="show_container">
+        <div className="grid-x align-center grid-margin-y" style={{margin:'2rem'}}>
+          <div className="cell small-12 medium-8 cocktail-show-tile">
+            <div className="grid-x cocktail-show-tile grid-margin-y">
+              <div className="cell text-center">
+                <h1>{this.state.name}</h1>
+              </div>
+              <div className="cell medium-4">
+                <img src={this.state.image}></img>
+              </div>
+              <div className="cell medium-8">
+                <ul style={{ listStyleType: 'none' }}>
+                  {liquorParts}
+                  {otherIngredients}
+                </ul>
+                <p>{this.state.directions}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="cell small-4 medium-3">
-          <img src={this.state.image}></img>
-        </div>
-        <div className="cell small-8 medium-7" style={{background: 'white'}}>
-          <ul style={{listStyleType:'none'}}>
-            {liquorParts}
-            {otherIngredients}
-          </ul>
-          <p>{this.state.directions}</p>
-        </div>
-        <NewLiquorPartTile addLiquorPart={this.addLiquorPart}/>
-        <NewOtherIngredientsTile addIngredient={this.addIngredient}/>
+        <NewLiquorPartTile addLiquorPart={this.addLiquorPart} />
+        <NewOtherIngredientsTile addIngredient={this.addIngredient} />
+        <ReviewsContainer cocktailId={this.props.match.params.id} signedIn={this.state.signedIn}/>
       </div>
+      
     )
   }
 }

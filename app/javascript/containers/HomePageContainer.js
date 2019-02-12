@@ -4,11 +4,13 @@ import SearchTile from '../tiles/SearchTile'
 import CocktailsContainer from './CocktailsContainer'
 import NewCocktailTile from '../tiles/NewCocktailTile'
 
+
 class HomePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: ""
+      searchText: "",
+      searchCenter:"100vh"
     };
     this.searchTextChange=this.searchTextChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -46,40 +48,38 @@ class HomePageContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({results: body})
+        if(body.cocktails.length > 0){
+          this.setState({ results: body, searchCenter: "100%" })
+        } else{
+          this.setState({ results: body, searchCenter: "100vh"})
+        }
+          
       })
   }
-
   render() {
     let results =() =>{
-      if(this.state.results){
+      if(this.state.results && this.state.results.cocktails.length > 0){
         return(
             <div className="cell"><CocktailsContainer cocktails={this.state.results.cocktails} /></div>
         );
       }
     }
-    let style ={
-      minHeight: '100vh',
-      color: 'white'
-    }
+    let searchStyle = {height: this.state.searchCenter}
     return(
-      <div className="grid-container fluid">
-        <div className="grid-y align-center" style={style}>
-          <div className="cell small-2">
-            <div className="grid-x align-center" style={{height: '100%'}}>
-              <div className="cell small-12 large-4">
-                <SearchTile searchText={this.state.searchText} onChange={this.searchTextChange} handleSearch={this.handleSearch} />
-              </div>
-            </div>
+      <div className="grid-container grid-margin-y fluid">
+        <div className="grid-x grid-padding-y align-center">
+          <div className="cell small-12 large-4 transition" style={searchStyle}>
+            <SearchTile searchText={this.state.searchText} onChange={this.searchTextChange} handleSearch={this.handleSearch} />
           </div>
-          {results()}                    
         </div>
-        <div style={{ margin: '2rem' }}>
-          <NewCocktailTile handleSubmit={this.newCocktailSubmit} />
-        </div>
+        {results()}  
       </div>
     )
   }
 }
 
 export default HomePageContainer;
+
+// <div style={{ margin: '2rem' }}>
+//   <NewCocktailTile handleSubmit={this.newCocktailSubmit} />
+// </div>

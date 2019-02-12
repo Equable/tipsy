@@ -260,8 +260,8 @@ liquors.each do |liquor|
 end
 
 cocktails = [
-  {name: "Verdant Lady", image_url: "https://bojongourmet.com/wp-content/uploads/2016/03/Verdant-Lady-Chartreuse-Gin-Mint-Cocktail-6.jpg", directions: "In a cocktail shaker filled halfway with ice, combine the gin, lime juice, simple syrup, chartreuse, and mint leaves. Shake vigorously for 30 seconds, then strain into a coupe. Garnish with a mint sprig if you like, and serve."},
-  {name: "Negroni", image_url:"https://www.thespruceeats.com/thmb/AHWO_swapE-OzY_e3-Ufk2YAR2s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/negroni-cocktail-recipe-759327-6-5b3f965b46e0fb00364f8d61.jpg", directions: "Stir the gin, campari and vermouth with ice. Strain into an ie-filled highball glass."}
+  {name: "Verdant Lady", image_url: "https://bojongourmet.com/wp-content/uploads/2016/03/Verdant-Lady-Chartreuse-Gin-Mint-Cocktail-6.jpg", directions: "In a cocktail shaker filled halfway with ice, combine the gin, lime juice, simple syrup, chartreuse, and mint leaves. Shake vigorously for 30 seconds, then strain into a coupe. Garnish with a mint sprig if you like, and serve.", user_id: 2},
+  {name: "Negroni", image_url:"https://www.thespruceeats.com/thmb/AHWO_swapE-OzY_e3-Ufk2YAR2s=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/negroni-cocktail-recipe-759327-6-5b3f965b46e0fb00364f8d61.jpg", directions: "Stir the gin, campari and vermouth with ice. Strain into an ie-filled highball glass.", user_id: 1}
 ]
 
 cocktails.each do |cocktail|
@@ -289,4 +289,13 @@ other_ingredients=[
 
 other_ingredients.each do |other_ingredient|
   OtherIngredient.create(other_ingredient)
+end
+
+reviews=[
+  {cocktail_id: 1, user_id: 1, body: "was pretty damn good", rating: 4},
+  {cocktail_id: 1, user_id: 2, body: "I liked it alot! Such good flavor!!!", rating: 5}
+]
+
+reviews.each do |review|
+  CocktailReview.create(review)
 end
