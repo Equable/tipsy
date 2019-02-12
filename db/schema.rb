@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_154159) do
+ActiveRecord::Schema.define(version: 2019_02_12_180128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,13 @@ ActiveRecord::Schema.define(version: 2019_02_11_154159) do
   create_table "cocktail_reviews", force: :cascade do |t|
     t.bigint "cocktail_id"
     t.bigint "user_id"
+    t.bigint "location_id"
     t.integer "rating", null: false
     t.text "body", null: false
-    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cocktail_id"], name: "index_cocktail_reviews_on_cocktail_id"
+    t.index ["location_id"], name: "index_cocktail_reviews_on_location_id"
     t.index ["user_id"], name: "index_cocktail_reviews_on_user_id"
   end
 
@@ -55,6 +56,10 @@ ActiveRecord::Schema.define(version: 2019_02_11_154159) do
     t.index ["spirit_id"], name: "index_liquors_on_spirit_id"
     t.index ["spirit_subtype_id"], name: "index_liquors_on_spirit_subtype_id"
     t.index ["user_id"], name: "index_liquors_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "location", null: false
   end
 
   create_table "other_ingredients", force: :cascade do |t|

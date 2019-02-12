@@ -36,4 +36,8 @@ FactoryBot.define do
     amount { "1" }
     unit { Faker::Food.metric_measurement }
   end
+
+  factory :location do
+    location { Faker::Address.street_address }
+  end
 end

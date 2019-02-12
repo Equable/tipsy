@@ -18,6 +18,17 @@ class Api::V1::LiquorPartController < ApplicationController
     render json: liquors
   end
 
+  def destroy
+    liquor= LiquorPart.find(params["id"].to_i)
+    if liquor.cocktail.user_id === current_user.id
+      if liquor.delete
+        render status: 202, json: {junk: "dont look im naked!"}
+      end
+    else
+      render status: 404, json: {junk: "woopsie poopsy"}
+    end
+  end
+
   private
 
   def find_liquor_or_create(liquor)

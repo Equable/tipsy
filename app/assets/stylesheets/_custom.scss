@@ -66,7 +66,7 @@ $menu-background: #333;
 .cocktails{
   background: rgba(0,0,0,0.7);
   padding: 2rem;
-  h4{
+  h4, h3{
     font-family: $main-font;
     color: white;
   }
@@ -103,6 +103,9 @@ $menu-background: #333;
   }
 }
 .liquorPartTile, .otherIngredientTile{
+  h4{
+    font-family: $main-font;
+  }
   .button{
     margin:0;
     background: rgb(0, 252, 126);
@@ -113,6 +116,61 @@ $menu-background: #333;
       background: rgb(204, 0, 255);
     }
   }
+}
+.devise-forms{
+  color: white;
+  font-family: $body-font;
+  h2, h3{
+    font-family: $main-font;
+  }
+  a{
+    color:black;
+    &:hover{
+      color:white;
+    }
+  }
+  label{
+    color: white;
+    font-size: 24px;
+  }
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
+  }
+  .delete{
+    margin:0;
+    background: rgb(168, 23, 23);
+    font-family: $main-font;
+    color: white;
+    font-weight: 700;
+    &:hover{
+      background: rgb(255, 255, 255);
+      color:black;
+    }
+  }
+  .cancel{
+    i{
+      font-size: 32px;
+    }
+  }
+  .cancel:hover .icon-unlock,
+  .cancel .icon-lock {
+    display: none;
+  } 
+  .cancel:hover .icon-lock {
+    display: inline;
+  }
+}
+
+.background-opaque{
+  background: rgba(0,0,0,0.7);
+  padding: 2rem;
 }
 
 .review-tile{
@@ -147,6 +205,9 @@ $menu-background: #333;
       color:black;
     }
   }
+}
+.form{
+  padding-top: 3rem;
 }
 
 .new-review-tile{
@@ -195,5 +256,11 @@ $menu-background: #333;
     &:hover{
       background: rgb(204, 0, 255);
     }
+  }
+}
+
+.delete-icon{
+  &:hover{
+    color:red;
   }
 }

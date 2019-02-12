@@ -93,19 +93,25 @@ class ReviewsContainer extends Component {
         </div>
       )
     })
-
+    let container = ()=>{
+      if(reviews.length > 0){
+        return(
+          <div className="grid-x align-center grid-margin-y">
+            <div className="cell medium-10 cocktail-show-tile">
+              <div className="grid-x align-center grid-margin-y">
+                {reviews}
+              </div>
+            </div>
+          </div>
+        ) 
+      }
+    }
     let newForm =()=>{
       if (this.props.signedIn.bool) { return <NewReviewTile key={`NRT_${this.props.cocktailId}`} cocktailId={this.props.cocktailId} handleSubmit={this.handleSubmit} />}
     }
     return (
       <div className="reviews-container">
-        <div className="grid-x align-center grid-margin-y">
-          <div className="cell medium-10 cocktail-show-tile">
-            <div className="grid-x align-center grid-margin-y">
-              {reviews}
-            </div>
-          </div>
-        </div>
+        {container()}
         {newForm()}
       </div>
     )
