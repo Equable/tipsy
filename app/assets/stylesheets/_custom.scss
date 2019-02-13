@@ -2,6 +2,7 @@
 @import 'util/util';
 @import url('https://fonts.googleapis.com/css?family=Rock+Salt');
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import 'motion-ui/motion-ui';
 
 $top-bar-color: white;
 $top-bar-link-color:black;
@@ -262,5 +263,18 @@ $menu-background: #333;
 .delete-icon{
   &:hover{
     color:red;
+  }
+}
+
+.map{
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
   }
 }

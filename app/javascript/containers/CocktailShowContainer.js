@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NewLiquorPartTile from '../tiles/NewLiquorPartTile'
 import NewOtherIngredientsTile from '../tiles/NewOtherIngredientsTile'
 import ReviewsContainer from './ReviewsContainer' 
+import MapTile from '../tiles/MapTile'
 
 class CocktailShowContainer extends Component {
   constructor(props) {
@@ -16,12 +17,14 @@ class CocktailShowContainer extends Component {
       loggedIn:false,
       signedIn:{},
       liquorParts:[],
-      otherIngredients: []
+      otherIngredients: [],
+      showMap: false
     };
     this.fetchCocktail = this.fetchCocktail.bind(this)
     this.addLiquorPart = this.addLiquorPart.bind(this)
     this.addIngredient = this.addIngredient.bind(this)
     this.deleteLiquor = this.deleteLiquor.bind(this)
+    this.toggleMap = this.toggleMap.bind(this)
   }
 
   deleteLiquor(id){
@@ -135,7 +138,13 @@ class CocktailShowContainer extends Component {
         this.setState({ otherIngredients: ingredients })
       })
   }
-
+  toggleMap(){
+    if(this.state.showMap){
+      this.setState({showMap: false})
+    } else{
+      this.setState({ showMap: true })
+    }
+  }
 
   componentDidMount(){
     this.fetchCocktail()
@@ -172,6 +181,28 @@ class CocktailShowContainer extends Component {
         )
       }
     }
+    let showMap =()=>{
+      if(this.state.showMap){
+        return(
+          <div className="cell">
+            <div className="grid-x grid-margin-y">
+              <div className="cell">
+                <MapTile cocktailId={this.props.match.params.id}/>
+              </div>
+              <div className="cell map text-center">
+                <input className="button" type="submit" value="Hide Map" onClick={this.toggleMap} />
+              </div>
+            </div>
+          </div>
+        )
+      } else {
+        return(
+          <div className="cell map text-center">
+            <input className="button" type="submit" value="Show Map" onClick={this.toggleMap} />
+          </div>
+        )
+      }
+    }
     return(
       <div key="show_container">
         <div className="grid-x align-center grid-margin-y" style={{margin:'2rem'}}>
@@ -192,6 +223,7 @@ class CocktailShowContainer extends Component {
               </div>
             </div>
           </div>
+          {showMap()}
         </div>
         {addParts()}
         <ReviewsContainer cocktailId={this.props.match.params.id} signedIn={this.state.signedIn}/>
