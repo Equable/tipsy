@@ -15,7 +15,7 @@ class Api::V1::CocktailReviewController < ApplicationController
       if !location
         review["location"] = Location.create({location: review["location"]})
       else
-        location["review"] =location
+        location["location"] =location
       end
       
       newReview = CocktailReview.new(review)
