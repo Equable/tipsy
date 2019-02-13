@@ -264,3 +264,16 @@ $menu-background: #333;
     color:red;
   }
 }
+
+.map{
+  .button{
+    margin:0;
+    background: rgb(0, 252, 126);
+    font-family: $main-font;
+    color: black;
+    font-weight: 700;
+    &:hover{
+      background: rgb(204, 0, 255);
+    }
+  }
+}
