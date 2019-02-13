@@ -15,9 +15,8 @@ class Api::V1::CocktailReviewController < ApplicationController
       if !location
         review["location"] = Location.create({location: review["location"]})
       else
-        location["location"] =location
+        review["location"] =location
       end
-      
       newReview = CocktailReview.new(review)
       if newReview.save
         render json: newReview, serializer: CocktailReviewSerializer
