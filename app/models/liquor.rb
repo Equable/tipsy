@@ -7,6 +7,6 @@ class Liquor < ApplicationRecord
   
   validates :name, presence: true
   validates :brand, presence: true
-  validates_uniqueness_of :name, scope: :brand, :case_sensitive => false
+  validates_uniqueness_of :name, scope: [:brand, :spirit_subtype_id], :case_sensitive => false
   validates :proof, :numericality => { :greater_than_or_equal_to => 0 }
 end

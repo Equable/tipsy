@@ -152,13 +152,13 @@ spirit_subtypes.each do |spirit_subtype|
 end
 
 liquors = [
-  { name: "Beefeater", brand: "Beefeater", proof: "94", made_at: "London, England", spirit_subtype_id: 38, spirit_id: 4 }, 
-  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 42, spirit_id: 4 }, 
-  { name: "Gin", brand: "Any", proof: "88", made_at: "", spirit_subtype_id: 102, spirit_id: 4 }, 
-  { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 90, spirit_id: 15 }, 
+  { name: "Beefeater", brand: "Beefeater", proof: "94", made_at: "London, England", spirit_subtype_id: 39, spirit_id: 4 }, 
+  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 43, spirit_id: 4 }, 
+  { name: "Gin", brand: "Any", proof: "88", made_at: "", spirit_subtype_id: 103, spirit_id: 4 }, 
+  { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 91, spirit_id: 15 }, 
   { name: "Dry Vermouth", brand: "Martini & Rossi", proof: "88", made_at: "Italy", spirit_subtype_id: 91, spirit_id: 15 }, 
-  { name: "Campari", brand: "Campari", proof: "48", made_at: "Italy", spirit_subtype_id: 94, spirit_id: 15}, 
-  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "France", spirit_subtype_id: 98, spirit_id: 15 },
+  { name: "Campari", brand: "Campari", proof: "48", made_at: "Italy", spirit_subtype_id: 94, spirit_id: 16}, 
+  { name: "Green Chartreuse", brand: "Chartreuse", proof: "110", made_at: "France", spirit_subtype_id: 99, spirit_id: 16 },
   { name: "Generic", brand: "Any", spirit_subtype_id: 1, spirit_id: 1 },
   { name: "Generic", brand: "Any", spirit_subtype_id: 2, spirit_id: 1 },
   { name: "Generic", brand: "Any", spirit_subtype_id: 3, spirit_id: 1 },
