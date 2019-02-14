@@ -8,7 +8,7 @@ RSpec.describe Liquor, type: :model do
     it { should belong_to(:spirit_subtype) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:brand) }
-    it { should validate_uniqueness_of(:name).scoped_to(:brand).ignoring_case_sensitivity }
+    it { should validate_uniqueness_of(:name).scoped_to(:brand, :spirit_subtype_id).ignoring_case_sensitivity }
     it { should validate_numericality_of(:proof)}
   end
 end
