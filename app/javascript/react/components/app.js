@@ -8,6 +8,7 @@ import CocktailShowContainer from "../../containers/CocktailShowContainer";
 import NewSpiritSubtypeTile from "../../tiles/NewSpiritSubtypeTile";
 import NewLiquorTile from "../../tiles/NewLiquorTile";
 import NewLiquorPartTile from "../../tiles/NewLiquorPartTile";
+import NewCocktailTile from "../../tiles/NewCocktailTile";
 
 const history = createBrowserHistory()
 
@@ -15,6 +16,7 @@ const App = props => {
   return (
     <Router history={history}>
       <Switch>
+        <Route path='/cocktail/new' component={NewCocktailTile} />
         <Route path='/cocktail/:id' component={CocktailShowContainer} />
         <Route path='/subtype/new' component={NewSpiritSubtypeTile} />
         <Route path='/liquor/new' component={NewLiquorTile} />

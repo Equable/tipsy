@@ -9,7 +9,9 @@ class Api::V1::CocktailController < ApplicationController
   end
 
   def create 
+    authenticate_user!
     cocktail = Cocktail.new(cocktail_params)
+    cocktail["user_id"] = current_user.id
     if cocktail.save
       render json: {cocktail: cocktail}
     else
