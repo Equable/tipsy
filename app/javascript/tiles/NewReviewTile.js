@@ -48,7 +48,7 @@ class NewReviewTile extends Component {
                             count={5}
                             size={25}
                             color1={'white'}
-                            color2={'#00fc7e'}
+                            color2={'#C8B13A'}
                             half={false}
                             value={this.state.rating}
                             onChange={this.ratingChange}

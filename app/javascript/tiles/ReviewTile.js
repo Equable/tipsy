@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import EditReviewTile from "./EditReviewTile";
 
@@ -67,8 +67,8 @@ class ReviewTile extends Component {
       if(this.props.buttons){
         return(
           <div className="cell">
-            <input className="edit button" type="submit" value="Edit" onClick={this.edit}/>
-            <input className="delete button" type="submit" value="Delete" onClick={deleteReview} />
+            <input className="button" type="submit" value="Edit" onClick={this.edit}/>
+            <input className="button" type="submit" value="Delete" onClick={deleteReview} />
           </div>
         )
       }

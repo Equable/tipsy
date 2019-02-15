@@ -67,6 +67,7 @@ class HomePageContainer extends Component {
     let searchStyle = {height: this.state.searchCenter}
     return(
       <div className="grid-container grid-margin-y fluid">
+        <div className="cell"></div>
         <div className="grid-x grid-padding-y align-center">
           <div className="cell small-12 large-4 transition" style={searchStyle}>
             <SearchTile searchText={this.state.searchText} onChange={this.searchTextChange} handleSearch={this.handleSearch} />

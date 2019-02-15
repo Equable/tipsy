@@ -1,39 +1,39 @@
 @import 'util/mixins';
 @import 'util/util';
-@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import 'motion-ui/motion-ui';
-
+// rgb(0, 252, 126);
 $top-bar-color: white;
 $top-bar-link-color:black;
-$main-font:'Rock Salt', cursive;
+$main-font:'Staatliches', sans-serif;
 $body-font: 'Oswald', sans-serif;
-
+$general-button-color: white;
 .search-tile{
   width: 100%;
   height: 100%;
   background:white;
   padding: 5rem;
-  border-radius:50px;
 }
 
 $menu-background: #333;
 
 .title-bar {
-  background: $top-bar-color;
   padding: 0.9rem;
 }
 
+.button{
+  letter-spacing: .2rem;
+  margin-bottom: .2rem;
+}
 .top-bar {
-  background: $top-bar-color !important;
-  .dropdown, .menu{
-    background: $top-bar-color;
+  .menu-text{
+    font-size: 24px;
   }
+  letter-spacing: .2rem;
   ul {
-    background: $top-bar-color;
   
     li {
-      background: $top-bar-color;
     
         a {
           color: black;
@@ -55,7 +55,6 @@ $menu-background: #333;
   overflow:hidden;
   height:300px;
   border: solid 1px white;
-  border-radius: 1px;
   img{
     object-position: center;
     object-fit:cover;
@@ -70,6 +69,7 @@ $menu-background: #333;
   h4, h3{
     font-family: $main-font;
     color: white;
+    letter-spacing: .2rem;
   }
   .cocktail{
     background: rgba(0,0,0,0.7);
@@ -96,20 +96,20 @@ $menu-background: #333;
   }
   h1{
     font-family: $main-font;
+    letter-spacing: .2rem;
   }
   input, select{
     background: rgba(255,255,255,0.5);
     color: black;
-    border-radius: 20px;
   }
 }
 .liquorPartTile, .otherIngredientTile{
   h4{
     font-family: $main-font;
+    letter-spacing: .2rem;
   }
   .button{
-    margin:0;
-    background: rgb(0, 252, 126);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
@@ -123,6 +123,12 @@ $menu-background: #333;
   font-family: $body-font;
   h2, h3{
     font-family: $main-font;
+    letter-spacing: .2rem;
+  }
+  h4{
+    letter-spacing: .2rem;
+    font-family: $main-font;
+    color: purple;
   }
   a{
     color:black;
@@ -130,13 +136,19 @@ $menu-background: #333;
       color:white;
     }
   }
+  input{
+    background: rgba(255,255,255,0.5);
+  }
+  textarea{
+    background: rgba(255,255,255,0.5); 
+  }
   label{
     color: white;
     font-size: 24px;
   }
   .button{
     margin:0;
-    background: rgb(0, 252, 126);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
@@ -181,29 +193,18 @@ $menu-background: #333;
     margin: 0;
   }
   .stars{
-    color:#00fc7e;
+    color: #C8B13A;
   }
-  .edit, .button{
+  .button{
     margin-bottom: 0;
     margin-right: 1rem;
-    background: rgb(252, 214, 0);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
     &:hover{
-      background: rgb(255, 255, 255);
-      color:black;
-    }
-  }
-  .delete{
-    margin:0;
-    background: rgb(168, 23, 23);
-    font-family: $main-font;
-    color: white;
-    font-weight: 700;
-    &:hover{
-      background: rgb(255, 255, 255);
-      color:black;
+      background: rgb(204, 0, 255);
+      color:white;
     }
   }
 }
@@ -225,7 +226,7 @@ $menu-background: #333;
   }
   .button{
     margin:0;
-    background: rgb(0, 252, 126);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
@@ -238,11 +239,9 @@ $menu-background: #333;
   padding:3rem;
   background: rgba(0,0,0,0.7);
   font-family: $body-font;
-  border-radius: 30px;
   input{
     background: rgba(255,255,255,0.5);
     color: black;
-    border-radius: 20px;
   }
   label{
     font-size: 18px;
@@ -250,10 +249,12 @@ $menu-background: #333;
   }
   .button{
     margin:0;
-    background: rgb(0, 252, 126);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
+    letter-spacing: .2rem;
+
     &:hover{
       background: rgb(204, 0, 255);
     }
@@ -269,7 +270,7 @@ $menu-background: #333;
 .map{
   .button{
     margin:0;
-    background: rgb(0, 252, 126);
+    background: $general-button-color;
     font-family: $main-font;
     color: black;
     font-weight: 700;
@@ -277,4 +278,11 @@ $menu-background: #333;
       background: rgb(204, 0, 255);
     }
   }
+}
+
+.flash-bar{
+  background:  rgba(0,0,0,0.7);
+  color: white;
+  font-family: $main-font;
+  padding: 1rem;
 }

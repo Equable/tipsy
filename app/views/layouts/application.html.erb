@@ -25,6 +25,7 @@
           <div class="top-bar-right">
             <ul class="dropdown menu" data-dropdown-menu>
               <%- if current_user -%>
+                <li><%= link_to 'New Cocktail', '/cocktail/new' %></li>
                 <li><%= link_to current_user.username, edit_user_registration_path %></li>
                 <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
               <%- else -%>
@@ -36,12 +37,6 @@
         </div>
       </div>
     </div>
-
-    <%- flash.each do |key, value| -%>
-      <div class="cell cocktail-show-tile">
-        <%= value %>
-      </div>
-    <%- end -%>
 
     <%= yield %>
 
