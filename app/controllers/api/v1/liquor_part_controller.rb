@@ -32,6 +32,7 @@ class Api::V1::LiquorPartController < ApplicationController
   private
 
   def find_liquor_or_create(liquor)
+    binding.pry
     liquor_name = liquor["name"].gsub("'"){"\'"}
     liquor_name = "Any" if liquor_name === ""
     liquor_subtype= liquor["subtype"]
