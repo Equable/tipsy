@@ -47,7 +47,7 @@ class NewLiquorPartDatalistInputTile extends Component {
       <div className="cell medium-6">
         <label>
           Name:
-        <input name="name" list="data" placeholder="Old No. 7" type="text" value={this.props.name} onChange={handleChange} />
+        <input name="name" list="data" placeholder="Any(optional)" type="text" value={this.props.name} onChange={handleChange} />
         <datalist id="data">
           {options}
         </datalist>

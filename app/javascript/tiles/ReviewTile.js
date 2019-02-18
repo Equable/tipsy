@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import EditReviewTile from "./EditReviewTile";
 
@@ -53,12 +55,19 @@ class ReviewTile extends Component {
     this.setState({username: this.props.review.user.name, rating: this.props.review.rating, body: this.props.review.body, location: this.props.review.location || ""})
   }
   render(){
-    let ratingStars=[
-      <FontAwesomeIcon key={`R1_${this.state.username}`} icon={faStar} />,
-      <FontAwesomeIcon key={`R2_${this.state.username}`} icon={faStar} />,
-      <FontAwesomeIcon key={`R3_${this.state.username}`} icon={faStar} />,
-      <FontAwesomeIcon key={`R4_${this.state.username}`} icon={faStar} />,
-      <FontAwesomeIcon key={`R5_${this.state.username}`} icon={faStar} />
+    let ratingEmptStars=[
+      <FontAwesomeIcon key={`RE1_${this.state.username}`} icon={faStar} />,
+      <FontAwesomeIcon key={`RE2_${this.state.username}`} icon={faStar} />,
+      <FontAwesomeIcon key={`RE3_${this.state.username}`} icon={faStar} />,
+      <FontAwesomeIcon key={`RE4_${this.state.username}`} icon={faStar} />,
+      <FontAwesomeIcon key={`RE5_${this.state.username}`} icon={faStar} />
+    ]
+    let ratingStars = [
+      <FontAwesomeIcon key={`R1_${this.state.username}`} icon={fasStar} />,
+      <FontAwesomeIcon key={`R2_${this.state.username}`} icon={fasStar} />,
+      <FontAwesomeIcon key={`R3_${this.state.username}`} icon={fasStar} />,
+      <FontAwesomeIcon key={`R4_${this.state.username}`} icon={fasStar} />,
+      <FontAwesomeIcon key={`R5_${this.state.username}`} icon={fasStar} />
     ]
     let deleteReview = ()=>{
       this.props.deleteReview(this.props.review.id)
@@ -94,7 +103,7 @@ class ReviewTile extends Component {
             </div>
             {location()}
             <div className="cell">
-              <span className="stars">{ratingStars.slice(0, this.state.rating)}</span>
+              <span className="stars">{ratingStars.slice(0, this.state.rating)}{ratingEmptStars.slice(0,(5-this.state.rating))}</span>
             </div>
             <div className="cell">
               <p>{this.state.body}</p>

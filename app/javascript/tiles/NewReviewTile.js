@@ -29,6 +29,7 @@ class NewReviewTile extends Component {
     let handleSubmit=(event)=>{
       event.preventDefault();
       this.props.handleSubmit(this.state)
+      this.setState({body: "", location: ""})
     }
     return (
       <div className="new-review-tile">

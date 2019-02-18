@@ -154,10 +154,12 @@ class CocktailShowContainer extends Component {
       let deleteLiquor=()=>{
         this.deleteLiquor(liquorPart.id)
       }
+      name = liquorPart.name
+      if(name === "Any"){name = ""}
       if(this.state.loggedIn){
-        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name} <span style={{ float: 'right' }}><FontAwesomeIcon key={`LiqD_${liquorPart.id}`} className="delete-icon" onClick={deleteLiquor} icon={faEraser}/></span></li>
+        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {name} {liquorPart.subtype} {liquorPart.spirit}<span style={{ float: 'right' }}><FontAwesomeIcon key={`LiqD_${liquorPart.id}`} className="delete-icon" onClick={deleteLiquor} icon={faEraser}/></span></li>
       }else{
-        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {liquorPart.name}</li>
+        return <li key={`Liq_${liquorPart.id}`}>{liquorPart.amount} {liquorPart.unit} {name} {liquorPart.subtype} {liquorPart.spirit}</li>
       }
     })
 

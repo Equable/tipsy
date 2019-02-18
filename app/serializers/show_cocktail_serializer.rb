@@ -5,7 +5,7 @@ class ShowCocktailSerializer < ActiveModel::Serializer
   def liquor_parts
     parts = []
     object.liquor_parts.each do |liquor_part|
-      parts << {name: liquor_part.liquor.name, unit: liquor_part.unit, amount: liquor_part.amount, id: liquor_part.id}
+      parts << {name: liquor_part.liquor.name, unit: liquor_part.unit, amount: liquor_part.amount, id: liquor_part.id, subtype: liquor_part.liquor.spirit_subtype.name, spirit: liquor_part.liquor.spirit.name}
     end
     return parts
   end
