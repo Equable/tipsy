@@ -72,7 +72,7 @@ class Api::V1::LiquorPartController < ApplicationController
   def generic_spirit_subtype(liquor)
     spirit_subtypes = SpiritSubtype.arel_table
     liquor_spirit = liquor["spirit_id"]
-    spirit_subtype = SpiritSubtype.where(spirit_subtypes[:name].matches("Generic").and(spirit_subtypes[:spirit_id].eq(liquor_spirit.to_i)) ).first
+    spirit_subtype = SpiritSubtype.where(spirit_subtypes[:name].matches("Any").and(spirit_subtypes[:spirit_id].eq(liquor_spirit.to_i)) ).first
     id = spirit_subtype.id
   end
 
