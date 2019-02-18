@@ -62,6 +62,7 @@ class NewLiquorPartTile extends Component {
     event.preventDefault()
     let liquor = {name: this.state.name, brand: this.state.brand, subtype: this.state.spirit_subtype_id, amount: this.state.amount, spirit_id: this.state.spirit_id}
     this.props.addLiquorPart(liquor)
+    this.setState({name: "", brand:""})
   }
 
   componentDidMount() {

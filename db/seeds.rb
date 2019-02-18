@@ -1,6 +1,6 @@
 users = [
-  { email: "admin@gmail.com", password: "password", admin: true, username:"admin" },
-  { email: "user@gmail.com", password: "password", admin: false, username:"user" }
+  { email: "admin@gmail.com", password: "adminpassword", admin: true, username:"admin" },
+  { email: "user@gmail.com", password: "userpassword", admin: false, username:"user" }
 ]
 
 users.each do |user|
@@ -153,7 +153,7 @@ end
 
 liquors = [
   { name: "Beefeater", brand: "Beefeater", proof: "94", made_at: "London, England", spirit_subtype_id: 39, spirit_id: 4 }, 
-  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 43, spirit_id: 4 }, 
+  { name: "Hendricks Gin", brand: "Hendricks", proof: "88", made_at: "Scotland", spirit_subtype_id: 42, spirit_id: 4 }, 
   { name: "Gin", brand: "Any", proof: "88", made_at: "", spirit_subtype_id: 103, spirit_id: 4 }, 
   { name: "Antica", brand: "Carpano", proof: "33", made_at: "Italy", spirit_subtype_id: 91, spirit_id: 15 }, 
   { name: "Dry Vermouth", brand: "Martini & Rossi", proof: "88", made_at: "Italy", spirit_subtype_id: 91, spirit_id: 15 }, 

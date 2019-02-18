@@ -71,9 +71,19 @@ $menu-background: #333;
     color: white;
     letter-spacing: .2rem;
   }
+  h4{
+    margin: 0;
+  }
   .cocktail{
     background: rgba(0,0,0,0.7);
     padding: 2rem;
+    .cocktail-name{
+      height: 100px;
+      width:100%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 

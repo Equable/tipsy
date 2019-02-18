@@ -33,6 +33,7 @@ class Api::V1::LiquorPartController < ApplicationController
 
   def find_liquor_or_create(liquor)
     liquor_name = liquor["name"].gsub("'"){"\'"}
+    liquor_name = "Any" if liquor_name === ""
     liquor_subtype= liquor["subtype"]
     liquor_brand = liquor["brand"].gsub("'"){"\'"}
     liquor_spirit = liquor["spirit_id"]

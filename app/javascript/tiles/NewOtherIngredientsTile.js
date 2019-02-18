@@ -18,6 +18,7 @@ class NewOtherIngredientsTile extends Component {
     let addIngredient=(event)=>{
       event.preventDefault()
       this.props.addIngredient(this.state)
+      this.setState({name: "", amount: "", unit: ""})
     }
     return (
       <div className="otherIngredientTile">
