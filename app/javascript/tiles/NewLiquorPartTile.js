@@ -96,7 +96,6 @@ class NewLiquorPartTile extends Component {
                   <label>
                     Subtype:
                     <select name="spirit_subtype_id" value={this.state.subtype} onChange={this.handleChange}>
-                      <option value="">Any</option>
                       {subtypeOptions}
                     </select>
                   </label>
