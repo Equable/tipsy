@@ -1,0 +1,68 @@
+data structure for sentences 
+
+[hello world]
+
+1 hello
+2 world
+
+
+[1, 2]
+
+
+words
+
+create table
+t.string words
+
+t.index words
+end
+
+[1,2]
+
+Words.find(1)
+
+split_array = user_string.split()
+[hello, world]
+
+word_array =[]
+split_array.each do |word|
+  word_id = Word.find(name: word)
+  if  word_id
+    word_array << word_id.id
+  else
+    new_word_id = Word.create(word: word)
+    word_array << new_word_id
+  end
+  UserSentence.create(sentence: word_array.to_s)
+end
+
+
+user 
+  has_many :sentences
+
+
+  post
+    has_many :words
+    belongs_to :user
+  end
+
+  sentence
+
+
+foo sentences
+
+id Sentence_id Word_id index_loc
+1   1           1         0
+2   1           2         1
+3   2           2         0
+4   2           3         1
+
+sentence_1.foo_sentences =[<FooSentence_1>, <Foo_sentence_2>]
+
+query_word_id = Word.find(word: query).id
+query_location = params[location]-1
+queried_sentences = foo_sentences.where(word_id: query_word_id, index_loc: query_location)
+sentences = []
+queried_sentences.each do |foo_sentence|
+  sentences << Sentence.find(foo_sentence.sentence_id)
+
