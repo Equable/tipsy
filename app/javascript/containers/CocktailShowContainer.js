@@ -66,6 +66,7 @@ class CocktailShowContainer extends Component {
         }
       })
   }
+
   fetchCocktail(){
     let id = this.props.match.params.id
     fetch(`/api/v1/cocktail/${id}`)
@@ -138,6 +139,7 @@ class CocktailShowContainer extends Component {
         this.setState({ otherIngredients: ingredients })
       })
   }
+
   toggleMap(){
     if(this.state.showMap){
       this.setState({showMap: false})
@@ -149,6 +151,7 @@ class CocktailShowContainer extends Component {
   componentDidMount(){
     this.fetchCocktail()
   }
+  
   render() {
     let liquorParts = this.state.liquorParts.map((liquorPart)=>{
       let deleteLiquor=()=>{

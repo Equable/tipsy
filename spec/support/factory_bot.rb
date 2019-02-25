@@ -40,4 +40,8 @@ FactoryBot.define do
   factory :location do
     location { Faker::Address.street_address }
   end
+
+  factory :review do
+    location { FactoryBot.create(:location)}
+  end
 end
