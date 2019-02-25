@@ -6,10 +6,17 @@ class MapTile extends Component {
     super(props);
     this.state = {
       locations: [],
+      curLat: 0,
+      curLng: 0,
     };
     this.fetchPins = this.fetchPins.bind(this)
   }
 
+  getGeoLocation(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({curLat:position.coords.latitude ,curLng:position.coords.longitude})
+    })
+  }
   fetchPins(){
     fetch(`/api/v1/map/${this.props.cocktailId}`)
       .then(response => {
@@ -30,12 +37,7 @@ class MapTile extends Component {
     this.fetchPins()
   }
   render() {
-    let curLng, curLat
-
-    navigator.geolocation.getCurrentPosition((position)=>{
-      curLng = position.coords.longitude
-      curLat = position.coords.latitude
-    })
+    this.getGeoLocation()
     let googleMarkers = this.state.locations.map((location, index)=>{
       return(
         <Marker
@@ -47,7 +49,7 @@ class MapTile extends Component {
     })
     const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
-        defaultCenter={{ lat: curLat || 42.3601, lng: curLng || -71.0589 }}
+        defaultCenter={{ lat: this.state.curLat || 42.3601, lng: this.state.curLng || -71.0589 }}
         defaultZoom={13}
       >
         {googleMarkers}
